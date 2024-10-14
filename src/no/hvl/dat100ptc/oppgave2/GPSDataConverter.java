@@ -10,16 +10,14 @@ public class GPSDataConverter {
 	private static int TIME_STARTINDEX = 11; 
 
 	public static int toSeconds(String timestr) {
-		String timePart = timestr.split("T")[1].split("\\.")[0];
-		
-		String timeParts[] = timePart.split(":");
+		String timePart = timestr.substring(11,19);
 		
 		
-		int hr = parseInt(timeParts[0]);
-		int min = parseInt(timeParts[1]);
-		int sec = parseInt(timeParts[2]);
+		int hr = parseInt(timePart.substring(0, 2));
+		int min = parseInt(timePart.substring(3, 5));
+		int sec = parseInt(timePart.substring(6, 8));
 		
-		int secs = (hr/3600) + (min/60) + sec;
+		int secs = (hr*3600) + (min*60) + sec;
 		
 		return secs;
 		
@@ -34,5 +32,6 @@ public class GPSDataConverter {
 		throw new UnsupportedOperationException(TODO.method());
 		
 	}
+	
 	
 }
