@@ -3,10 +3,14 @@ package no.hvl.dat100ptc.oppgave1;
 import no.hvl.dat100ptc.TODO;
 
 public class GPSPoint {
-
-	// TODO - objektvariable
 	
-	public GPSPoint(int time, double latitude, double longitude, double elevation) {
+	private int time;
+	private double latitude; 
+	private double longitude;
+	private double elevation; 
+
+
+	 
 
 		// TODO - konstruktur
 
