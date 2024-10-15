@@ -63,29 +63,60 @@ public class ShowRoute extends EasyGraphics {
 	}
 
 	public void showRouteMap(int ybase) {
-
-		// TODO 
-		throw new UnsupportedOperationException(TODO.method());
+		int x1, y1, x2, y2; 
 		
+		for (int i = 0; i < gpspoints.length - 1; i++) {
+			x1 = MARGIN + (int) ((gpspoints[i].getLongitude()- minlon) * xstep);
+			y1 = ybase - (int)((gpspoints[i].getLatitude() - minlat) * ystep);
+			
+			x2 = MARGIN + (int)((gpspoints[i + 1].getLongitude() - minlon) * xstep);
+	        y2 = ybase - (int)((gpspoints[i + 1].getLatitude() - minlat) * ystep);
+	        
+	        setColor(0, 0, 255);
+	        drawLine(x1, y1, x2, y2);
+			
+			
+		}
 	}
 
 	public void showStatistics() {
 
 		int TEXTDISTANCE = 20;
+		int y = 50;
 
 		setColor(0,0,0);
 		setFont("Courier",12);
 		
-		// TODO
-		throw new UnsupportedOperationException(TODO.method());
-		
+		double totalDistance = gpscomputer.totalDistance();
+	    double totalElevation = gpscomputer.totalElevation();
+	    double maxSpeed = gpscomputer.maxSpeed();
+	    double averageSpeed = gpscomputer.averageSpeed();
+	    int totalTime = gpscomputer.totalTime();
+
+	    // Vis statistikken i vinduet
+	    drawString("Total Distance: " + String.format("%.2f", totalDistance) + " km", TEXTDISTANCE, y);
+	    drawString("Total Elevation: " + String.format("%.2f", totalElevation) + " m", TEXTDISTANCE, y + 20);
+	    drawString("Max Speed: " + String.format("%.2f", maxSpeed) + " km/h", TEXTDISTANCE, y + 40);
+	    drawString("Average Speed: " + String.format("%.2f", averageSpeed) + " km/h", TEXTDISTANCE, y + 60);
+	    drawString("Total Time: " + totalTime + " s", TEXTDISTANCE, y + 80);
+	    
 	}
 
 	public void replayRoute(int ybase) {
 
-		// TODO 
-		throw new UnsupportedOperationException(TODO.method());
+		int x, y;
 		
+		for (int i = 0; i < gpspoints.length; i++) {
+			x = MARGIN + (int)((gpspoints[i].getLongitude() - minlon) * xstep);
+	        y = ybase - (int)((gpspoints[i].getLatitude() - minlat) * ystep);
+
+	        setColor(255, 0, 0);
+	        fillCircle(x, y, 5);
+	        pause(100);
+	        
+	        setColor(255, 255, 255);
+	        fillCircle(x, y, 5);
+		}
 	}
 
 }

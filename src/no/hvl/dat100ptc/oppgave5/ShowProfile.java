@@ -47,8 +47,18 @@ public class ShowProfile extends EasyGraphics {
 		int x = MARGIN; // første høyde skal tegnes ved MARGIN
 		int y;
 		
-		// TODO 
-		throw new UnsupportedOperationException(TODO.method());
+		for (GPSPoint point : gpspoints) {
+			int elevation = (int) point.getElevation();
+			if (elevation < 0) { 
+				elevation = 0;
+			} else if (elevation > MAXBARHEIGHT) {
+				elevation = MAXBARHEIGHT;
+			}
+			
+			drawLine(x, ybase, x, ybase - elevation);
+			
+			x += 3;
+		}
 		
 
 	}
