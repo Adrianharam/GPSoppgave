@@ -1,4 +1,6 @@
 package no.hvl.dat100ptc.oppgave2;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 import no.hvl.dat100ptc.oppgave1.GPSPoint;
 
@@ -33,16 +35,19 @@ public class GPSData {
 
    
     public boolean insert(String time, String latitude, String longitude, String elevation) {
-    
-        int timeInt = Integer.parseInt(time);
+
+        // Bruker DateTimeFormatter for å tolke ISO 8601 format
+        DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
+        LocalTime localTime = LocalTime.parse(time, formatter);
+
+        // Konverterer tidspunktet til sekunder siden midnatt
+        int timeInSeconds = localTime.toSecondOfDay();
+
         double latDouble = Double.parseDouble(latitude);
         double longDouble = Double.parseDouble(longitude);
         double elevDouble = Double.parseDouble(elevation);
 
-      
-        GPSPoint gpspoint = new GPSPoint(timeInt, latDouble, longDouble, elevDouble);
-
-        
+        GPSPoint gpspoint = new GPSPoint(timeInSeconds, latDouble, longDouble, elevDouble);
         return insertGPS(gpspoint);
     }
 
