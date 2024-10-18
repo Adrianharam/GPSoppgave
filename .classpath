@@ -7,5 +7,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="libs/easygraphics.jar"/>
+	<classpathentry kind="lib" path="/Users/havardmortveit/Documents/GitHub/dat100public/easygraphics/lib/easygraphics.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
